@@ -1,0 +1,496 @@
+Age,Topic,Difficulty,Accuracy (%),Number of Questions,Previous Mastery Score,New Mastery Score
+6,Letter Reading,1,100,5,0.4,0.53
+7,Letter Reading,1,64.97,2,0.6,0.55
+6,Letter Reading,3,36.58,4,0.46,0.46
+6,Letter Reading,1,100,3,0.41,0.48
+6,Letter Reading,1,53.16,5,0.57,0.42
+6,Letter Reading,3,66.97,2,0.57,0.57
+7,Letter Reading,3,40.1,2,0.56,0.56
+7,Letter Reading,2,74.92,2,0.41,0.37
+6,Letter Reading,3,48.1,2,0.44,0.44
+7,Letter Reading,1,86.28,5,0.4,0.54
+6,Letter Reading,1,61.73,5,0.3,0.17
+6,Letter Reading,1,97.59,4,0.31,0.43
+6,Letter Reading,1,46.29,3,0.55,0.48
+7,Letter Reading,3,53.32,1,0.43,0.43
+6,Letter Reading,3,47.58,2,0.39,0.39
+6,Letter Reading,3,39.81,2,0.51,0.51
+7,Letter Reading,1,100,1,0.65,0.67
+6,Letter Reading,3,40.41,1,0.54,0.54
+7,Letter Reading,1,80.5,2,0.57,0.63
+7,Letter Reading,2,58.34,2,0.53,0.5
+6,Letter Reading,2,83.28,2,0.32,0.42
+7,Letter Reading,2,43.92,4,0.56,0.51
+7,Letter Reading,3,48.27,1,0.63,0.63
+6,Letter Reading,3,76.38,5,0.64,0.64
+6,Letter Reading,3,51.65,2,0.49,0.49
+7,Letter Reading,2,79.38,2,0.33,0.29
+7,Letter Reading,3,52.47,2,0.31,0.31
+7,Letter Reading,3,72.55,1,0.55,0.55
+6,Letter Reading,1,70.98,4,0.43,0.32
+6,Letter Reading,3,58.29,2,0.59,0.59
+6,Letter Reading,1,100,1,0.55,0.58
+7,Letter Reading,3,61.27,3,0.63,0.63
+6,Letter Reading,3,89.48,2,0.34,0.52
+7,Word Reading,3,61.85,2,0.54,0.54
+6,Word Reading,1,95.7,5,0.52,0.64
+6,Word Reading,2,99.39,3,0.46,0.64
+6,Word Reading,3,58.62,5,0.51,0.51
+7,Word Reading,2,78.14,4,0.62,0.58
+7,Word Reading,2,40.31,3,0.64,0.6
+7,Word Reading,1,64.66,1,0.33,0.3
+7,Word Reading,2,56.03,4,0.57,0.5
+7,Word Reading,1,62.78,4,0.66,0.58
+6,Word Reading,3,54.68,5,0.69,0.69
+7,Word Reading,1,74.49,2,0.35,0.3
+6,Word Reading,2,63.2,2,0.33,0.3
+6,Word Reading,2,49.42,3,0.34,0.3
+7,Word Reading,1,100,3,0.42,0.5
+7,Word Reading,3,56.51,2,0.46,0.46
+6,Word Reading,1,52.18,4,0.36,0.21
+6,Word Reading,3,52.89,1,0.47,0.47
+7,Word Reading,3,48.7,5,0.5,0.5
+6,Word Reading,3,56.39,2,0.6,0.6
+7,Word Reading,2,79.57,5,0.64,0.59
+6,Word Reading,3,56.14,4,0.5,0.5
+6,Word Reading,1,59.46,2,0.36,0.29
+6,Word Reading,3,85.67,4,0.35,0.59
+6,Word Reading,1,86.28,1,0.45,0.48
+6,Word Reading,2,97.54,4,0.54,0.71
+7,Word Reading,1,54.73,4,0.42,0.33
+6,Word Reading,1,84.44,1,0.54,0.56
+7,Word Reading,3,55.08,5,0.62,0.62
+6,Word Reading,1,56.58,4,0.49,0.35
+6,Word Reading,2,60.17,3,0.61,0.57
+7,Word Reading,3,91.08,4,0.58,0.85
+7,Word Reading,2,92.05,4,0.33,0.5
+6,Word Reading,1,64.68,2,0.34,0.26
+6,Short Passage Reading,1,75.61,4,0.41,0.3
+6,Short Passage Reading,3,86.72,2,0.52,0.66
+7,Short Passage Reading,2,99.91,1,0.37,0.41
+6,Short Passage Reading,2,83.39,2,0.67,0.76
+6,Short Passage Reading,3,84.34,5,0.4,0.84
+7,Short Passage Reading,2,98.08,4,0.55,0.74
+6,Short Passage Reading,1,100,2,0.38,0.42
+6,Short Passage Reading,1,69.38,5,0.49,0.29
+7,Short Passage Reading,3,74.83,4,0.32,0.32
+7,Short Passage Reading,3,39.27,5,0.43,0.43
+6,Short Passage Reading,1,67.92,5,0.66,0.53
+6,Short Passage Reading,2,70.5,3,0.49,0.46
+7,Short Passage Reading,2,98.64,2,0.55,0.65
+6,Short Passage Reading,1,69.56,2,0.45,0.37
+6,Short Passage Reading,2,98.41,4,0.64,0.85
+6,Short Passage Reading,1,88.6,2,0.52,0.58
+7,Short Passage Reading,1,59.41,2,0.36,0.29
+6,Short Passage Reading,3,56.75,1,0.54,0.54
+6,Short Passage Reading,1,47.63,3,0.47,0.35
+6,Short Passage Reading,3,59.99,4,0.34,0.34
+6,Short Passage Reading,2,96.39,4,0.38,0.54
+7,Short Passage Reading,1,83,2,0.64,0.69
+6,Short Passage Reading,1,82.34,2,0.48,0.54
+6,Short Passage Reading,1,84.32,1,0.42,0.44
+6,Short Passage Reading,1,99.72,3,0.59,0.65
+7,Short Passage Reading,3,77.58,1,0.57,0.57
+6,Short Passage Reading,3,82.69,3,0.5,0.75
+7,Short Passage Reading,1,61.71,4,0.53,0.44
+7,Short Passage Reading,3,38.51,4,0.65,0.65
+6,Short Passage Reading,1,63.69,2,0.51,0.44
+7,Short Passage Reading,1,65.65,1,0.32,0.28
+6,Short Passage Reading,3,35.42,3,0.4,0.4
+6,Short Passage Reading,2,41.66,4,0.62,0.57
+7,Passage Comprehension,3,34.92,2,0.39,0.39
+7,Passage Comprehension,1,61.81,2,0.56,0.51
+7,Passage Comprehension,3,90.24,2,0.63,0.81
+6,Passage Comprehension,3,70.19,2,0.48,0.48
+7,Passage Comprehension,1,96.65,1,0.53,0.56
+7,Passage Comprehension,2,57.13,5,0.61,0.53
+7,Passage Comprehension,1,80.75,2,0.46,0.51
+7,Passage Comprehension,3,87.89,1,0.67,0.75
+7,Passage Comprehension,3,67.3,1,0.35,0.35
+6,Passage Comprehension,3,74.38,3,0.48,0.48
+7,Passage Comprehension,1,84.59,3,0.44,0.53
+7,Passage Comprehension,1,59.87,2,0.67,0.59
+7,Passage Comprehension,3,71.67,1,0.38,0.38
+7,Passage Comprehension,1,100,5,0.64,0.74
+6,Passage Comprehension,3,69.25,5,0.41,0.41
+7,Passage Comprehension,3,46.76,1,0.66,0.66
+7,Passage Comprehension,3,49.73,3,0.67,0.67
+6,Passage Comprehension,3,63.83,5,0.4,0.4
+7,Passage Comprehension,1,58.25,3,0.42,0.35
+7,Passage Comprehension,3,90.15,1,0.51,0.57
+7,Passage Comprehension,2,89.54,3,0.42,0.59
+7,Passage Comprehension,2,76.28,5,0.42,0.33
+7,Passage Comprehension,3,58.17,4,0.31,0.31
+6,Passage Comprehension,3,72.63,3,0.59,0.59
+6,Passage Comprehension,1,92.68,5,0.61,0.74
+6,Passage Comprehension,2,96.67,3,0.37,0.51
+7,Passage Comprehension,2,77.65,2,0.58,0.54
+6,Passage Comprehension,1,64.19,5,0.65,0.5
+6,Passage Comprehension,3,78.56,4,0.66,0.66
+6,Passage Comprehension,2,93.83,3,0.38,0.52
+7,Passage Comprehension,1,98.95,5,0.55,0.66
+7,Passage Comprehension,1,51.21,4,0.42,0.27
+7,Passage Comprehension,2,75.77,2,0.56,0.52
+7,Noun Classification,2,57.92,4,0.59,0.51
+6,Noun Classification,1,100,1,0.39,0.42
+7,Noun Classification,1,47.22,3,0.4,0.32
+6,Noun Classification,2,46.83,3,0.42,0.38
+7,Noun Classification,1,52.87,5,0.41,0.29
+6,Noun Classification,1,54.6,1,0.33,0.3
+7,Noun Classification,1,85.62,2,0.36,0.42
+6,Noun Classification,1,85.3,3,0.67,0.74
+6,Noun Classification,2,49.38,2,0.6,0.57
+6,Noun Classification,2,75.39,1,0.44,0.43
+7,Noun Classification,2,66.72,5,0.41,0.34
+6,Noun Classification,1,67.56,5,0.61,0.42
+6,Noun Classification,1,98.98,1,0.64,0.67
+6,Noun Classification,2,94.63,3,0.31,0.45
+7,Noun Classification,2,62.95,2,0.5,0.48
+6,Noun Classification,3,60.01,3,0.46,0.46
+7,Noun Classification,1,54.39,1,0.54,0.5
+7,Noun Classification,1,100,2,0.38,0.43
+7,Noun Classification,3,59.71,5,0.38,0.38
+6,Noun Classification,3,64.48,1,0.67,0.67
+7,Noun Classification,1,58.68,1,0.55,0.52
+6,Noun Classification,1,97.41,4,0.57,0.67
+7,Noun Classification,3,43.86,3,0.52,0.52
+6,Noun Classification,1,53.9,5,0.32,0.13
+6,Noun Classification,2,63.52,3,0.59,0.54
+6,Noun Classification,2,56.48,4,0.69,0.61
+6,Noun Classification,1,99.01,3,0.38,0.46
+6,Noun Classification,3,50.13,3,0.7,0.7
+6,Noun Classification,1,60.82,1,0.37,0.35
+6,Noun Classification,1,83.03,3,0.55,0.62
+6,Noun Classification,2,41.34,3,0.3,0.26
+7,Noun Classification,2,90.01,2,0.48,0.58
+6,Noun Classification,3,57.95,1,0.61,0.61
+8,Letter Reading,2,97.09,4,0.71,0.94
+8,Letter Reading,3,57.54,5,0.77,0.77
+8,Letter Reading,3,45.27,5,0.78,0.78
+8,Letter Reading,1,74.24,4,0.74,0.62
+9,Letter Reading,2,73.21,1,0.62,0.61
+8,Letter Reading,2,92.15,1,0.71,0.75
+9,Letter Reading,2,56.07,4,0.78,0.74
+8,Letter Reading,1,88.85,3,0.69,0.76
+9,Letter Reading,2,69.55,5,0.69,0.63
+8,Letter Reading,3,81.95,5,0.69,1
+8,Letter Reading,2,82.32,4,0.77,0.99
+8,Letter Reading,2,68.12,2,0.65,0.63
+9,Letter Reading,1,72.49,5,0.72,0.52
+9,Letter Reading,3,62.67,4,0.8,0.8
+9,Letter Reading,3,76.08,4,0.79,0.79
+8,Letter Reading,3,56.76,4,0.74,0.74
+9,Letter Reading,3,86.99,4,0.68,0.99
+8,Letter Reading,2,74.18,3,0.63,0.57
+9,Letter Reading,2,79.98,2,0.62,0.6
+9,Letter Reading,2,95.31,3,0.66,0.78
+8,Letter Reading,1,87.96,3,0.74,0.81
+8,Letter Reading,2,55.72,1,0.8,0.79
+9,Letter Reading,2,53.77,5,0.71,0.64
+9,Letter Reading,3,82.18,2,0.74,0.92
+9,Letter Reading,1,78.19,5,0.62,0.48
+9,Letter Reading,2,91.28,5,0.65,0.95
+8,Letter Reading,1,80.66,4,0.78,0.87
+9,Letter Reading,1,100,1,0.76,0.78
+8,Letter Reading,1,71.15,1,0.66,0.63
+9,Letter Reading,2,82.21,5,0.7,0.94
+8,Letter Reading,3,68.96,4,0.7,0.7
+8,Letter Reading,1,62,1,0.69,0.67
+8,Letter Reading,1,84.22,5,0.61,0.74
+8,Word Reading,1,94.96,2,0.68,0.74
+9,Word Reading,2,51.73,1,0.73,0.71
+9,Word Reading,3,40.5,5,0.67,0.67
+9,Word Reading,3,42.34,5,0.66,0.66
+9,Word Reading,3,59.03,4,0.8,0.8
+9,Word Reading,1,75.21,2,0.74,0.69
+9,Word Reading,3,79.7,1,0.65,0.65
+9,Word Reading,1,80.85,3,0.73,0.8
+8,Word Reading,2,51.8,5,0.75,0.67
+9,Word Reading,1,90.27,4,0.72,0.8
+8,Word Reading,1,100,5,0.65,0.76
+8,Word Reading,3,68.84,4,0.8,0.8
+8,Word Reading,3,82.57,5,0.62,1
+8,Word Reading,2,79.48,5,0.76,0.68
+9,Word Reading,1,73.25,3,0.73,0.63
+8,Word Reading,1,85.27,2,0.75,0.79
+8,Word Reading,2,50.28,2,0.79,0.75
+8,Word Reading,1,100,3,0.63,0.71
+9,Word Reading,3,90.67,5,0.8,1
+8,Word Reading,1,61.52,1,0.65,0.63
+8,Word Reading,1,50.53,4,0.78,0.67
+9,Word Reading,2,55.83,4,0.73,0.66
+8,Word Reading,3,38.92,2,0.68,0.68
+9,Word Reading,1,56.58,4,0.71,0.6
+9,Word Reading,2,85.53,2,0.6,0.72
+9,Word Reading,2,85.16,5,0.67,0.88
+9,Word Reading,1,93.49,4,0.7,0.79
+8,Word Reading,2,49.63,1,0.75,0.73
+8,Word Reading,1,67.22,4,0.63,0.55
+8,Word Reading,3,55.66,1,0.69,0.69
+9,Word Reading,1,54.17,2,0.63,0.55
+8,Word Reading,1,61.05,3,0.69,0.61
+9,Word Reading,3,61.31,4,0.73,0.73
+8,Short Passage Reading,1,81.32,5,0.72,0.85
+9,Short Passage Reading,3,71.69,1,0.74,0.74
+8,Short Passage Reading,1,88.35,4,0.78,0.87
+8,Short Passage Reading,3,85.86,2,0.62,0.75
+9,Short Passage Reading,3,38.44,3,0.72,0.72
+8,Short Passage Reading,3,54.51,3,0.79,0.79
+9,Short Passage Reading,2,78.74,2,0.73,0.7
+9,Short Passage Reading,3,76.91,2,0.64,0.64
+8,Short Passage Reading,3,37.91,2,0.73,0.73
+9,Short Passage Reading,2,78.24,1,0.72,0.71
+9,Short Passage Reading,1,59.14,2,0.6,0.56
+8,Short Passage Reading,2,61.02,1,0.77,0.76
+8,Short Passage Reading,1,100,5,0.6,0.72
+9,Short Passage Reading,2,51.95,4,0.63,0.57
+8,Short Passage Reading,2,74.88,1,0.77,0.76
+9,Short Passage Reading,2,85.63,5,0.72,0.98
+8,Short Passage Reading,2,61.08,1,0.65,0.63
+8,Short Passage Reading,2,81.52,1,0.72,0.76
+8,Short Passage Reading,3,29.51,5,0.76,0.76
+9,Short Passage Reading,2,68.28,3,0.74,0.69
+9,Short Passage Reading,3,91.06,4,0.71,1
+9,Short Passage Reading,3,48.48,1,0.75,0.75
+8,Short Passage Reading,3,38.54,5,0.66,0.66
+8,Short Passage Reading,2,60.87,2,0.78,0.74
+9,Short Passage Reading,2,41.98,1,0.69,0.67
+9,Short Passage Reading,2,98.94,3,0.76,0.9
+8,Short Passage Reading,1,57.74,4,0.78,0.64
+9,Short Passage Reading,1,69.48,3,0.64,0.54
+8,Short Passage Reading,2,67.41,3,0.71,0.67
+9,Short Passage Reading,1,67.64,1,0.75,0.71
+9,Short Passage Reading,1,100,1,0.68,0.71
+8,Short Passage Reading,1,66.18,5,0.75,0.55
+8,Short Passage Reading,2,73.36,3,0.61,0.56
+8,Passage Comprehension,3,70.65,1,0.75,0.75
+8,Passage Comprehension,1,88.67,3,0.73,0.82
+9,Passage Comprehension,2,43.21,1,0.72,0.7
+9,Passage Comprehension,2,92.08,4,0.77,1
+8,Passage Comprehension,2,81.87,1,0.73,0.79
+8,Passage Comprehension,2,82.44,5,0.73,1
+9,Passage Comprehension,3,65.12,1,0.68,0.68
+9,Passage Comprehension,1,56.94,2,0.74,0.68
+8,Passage Comprehension,2,62.6,3,0.64,0.6
+9,Passage Comprehension,3,70.38,3,0.76,0.76
+8,Passage Comprehension,3,64.47,1,0.69,0.69
+9,Passage Comprehension,1,87.22,4,0.78,0.87
+8,Passage Comprehension,1,55.59,3,0.78,0.67
+9,Passage Comprehension,1,100,2,0.64,0.69
+8,Passage Comprehension,3,80.84,1,0.74,0.82
+9,Passage Comprehension,3,56.53,3,0.67,0.67
+9,Passage Comprehension,2,60.84,5,0.68,0.62
+8,Passage Comprehension,2,59.07,2,0.64,0.6
+9,Passage Comprehension,1,91.6,4,0.67,0.78
+8,Passage Comprehension,1,89.8,2,0.65,0.69
+8,Passage Comprehension,2,78.4,4,0.66,0.6
+9,Passage Comprehension,1,68.12,3,0.71,0.65
+9,Passage Comprehension,3,43.48,1,0.65,0.65
+8,Passage Comprehension,3,48.17,4,0.63,0.63
+9,Passage Comprehension,1,84.7,1,0.61,0.64
+8,Passage Comprehension,3,82.88,5,0.64,1
+9,Passage Comprehension,3,90.28,5,0.64,1
+9,Passage Comprehension,1,52.63,5,0.64,0.54
+8,Passage Comprehension,1,91.8,1,0.75,0.78
+8,Passage Comprehension,1,68.89,2,0.62,0.57
+9,Passage Comprehension,2,94.72,2,0.7,0.78
+8,Passage Comprehension,1,95,5,0.76,0.88
+9,Passage Comprehension,1,95.14,3,0.65,0.73
+9,Noun Classification,2,45.85,3,0.76,0.71
+8,Noun Classification,3,43.02,2,0.68,0.68
+8,Noun Classification,2,86.19,4,0.69,0.87
+9,Noun Classification,1,75.56,1,0.76,0.72
+9,Noun Classification,3,37.6,1,0.64,0.64
+9,Noun Classification,1,72.18,4,0.62,0.54
+8,Noun Classification,1,94.54,5,0.69,0.82
+9,Noun Classification,3,69.94,4,0.7,0.7
+8,Noun Classification,1,100,3,0.73,0.8
+9,Noun Classification,1,86.28,1,0.64,0.67
+9,Noun Classification,1,87.6,1,0.72,0.75
+8,Noun Classification,2,85.15,5,0.69,0.91
+9,Noun Classification,2,56.48,1,0.74,0.72
+8,Noun Classification,1,63.67,2,0.77,0.71
+9,Noun Classification,2,88.35,1,0.77,0.82
+8,Noun Classification,3,38.35,2,0.79,0.79
+9,Noun Classification,2,91.14,1,0.77,0.82
+9,Noun Classification,3,49.99,1,0.74,0.74
+8,Noun Classification,1,48.09,3,0.74,0.67
+8,Noun Classification,1,100,4,0.64,0.72
+9,Noun Classification,2,81.19,5,0.71,0.98
+8,Noun Classification,1,94.03,2,0.77,0.83
+8,Noun Classification,3,71.85,4,0.68,0.68
+8,Noun Classification,3,70.75,2,0.79,0.79
+8,Noun Classification,3,51.53,2,0.65,0.65
+9,Noun Classification,3,81.1,2,0.61,0.75
+8,Noun Classification,3,85.37,4,0.73,1
+8,Noun Classification,3,49.6,5,0.69,0.69
+9,Noun Classification,3,69.07,2,0.7,0.7
+8,Noun Classification,1,64.84,4,0.66,0.55
+9,Noun Classification,2,51.53,2,0.79,0.77
+9,Noun Classification,3,83.44,5,0.75,1
+9,Noun Classification,3,57.79,1,0.76,0.76
+11,Letter Reading,2,45.25,4,0.86,0.82
+10,Letter Reading,2,51.28,2,0.79,0.76
+10,Letter Reading,1,91.61,2,0.9,0.95
+11,Letter Reading,1,49.18,3,0.8,0.73
+10,Letter Reading,1,54.46,5,0.8,0.62
+11,Letter Reading,3,58.75,3,0.79,0.79
+11,Letter Reading,2,64.51,3,0.9,0.86
+11,Letter Reading,1,46.06,4,0.87,0.75
+11,Letter Reading,2,47.25,3,0.94,0.89
+10,Letter Reading,3,57.34,1,0.82,0.82
+11,Letter Reading,3,80.83,3,0.9,1
+11,Letter Reading,3,75.18,2,0.75,0.75
+11,Letter Reading,2,71.65,3,0.85,0.8
+11,Letter Reading,3,37.37,4,0.86,0.86
+11,Letter Reading,2,58.45,3,0.76,0.72
+11,Letter Reading,1,68.46,2,0.79,0.73
+10,Letter Reading,3,63.97,5,0.8,0.8
+10,Letter Reading,2,74.37,3,0.82,0.78
+11,Letter Reading,3,76.97,4,0.81,0.81
+11,Letter Reading,2,86.42,5,0.78,1
+10,Letter Reading,1,97.84,2,0.9,0.95
+11,Letter Reading,2,74.59,4,0.87,0.83
+10,Letter Reading,1,62.35,5,0.8,0.68
+10,Letter Reading,3,44.96,2,0.92,0.92
+11,Letter Reading,1,56.35,3,0.88,0.79
+10,Letter Reading,1,77.36,1,0.79,0.76
+10,Letter Reading,2,70.86,4,0.82,0.77
+10,Letter Reading,3,66.6,5,0.82,0.82
+11,Letter Reading,1,100,5,0.79,0.89
+10,Letter Reading,3,55.63,5,0.85,0.85
+11,Letter Reading,3,92.06,2,0.91,1
+10,Letter Reading,3,88.6,1,0.77,0.86
+10,Letter Reading,2,62.31,3,0.77,0.73
+10,Word Reading,1,60.26,3,0.76,0.68
+11,Word Reading,3,63.74,2,0.87,0.87
+11,Word Reading,2,93.44,2,0.91,1
+10,Word Reading,3,44.94,3,0.79,0.79
+10,Word Reading,1,77.83,5,0.78,0.62
+10,Word Reading,1,65.66,2,0.94,0.88
+11,Word Reading,1,47.43,2,0.93,0.85
+11,Word Reading,1,75.44,3,0.75,0.63
+10,Word Reading,2,62.13,5,0.87,0.81
+11,Word Reading,3,78.32,3,0.8,0.8
+11,Word Reading,3,58.74,5,0.86,0.86
+10,Word Reading,3,76.67,5,0.9,0.9
+10,Word Reading,1,75.55,2,0.8,0.73
+11,Word Reading,1,70.88,4,0.9,0.78
+10,Word Reading,3,77.31,5,0.75,0.75
+11,Word Reading,3,47.67,2,0.85,0.85
+10,Word Reading,3,57.07,1,0.85,0.85
+11,Word Reading,3,60.65,5,0.77,0.77
+10,Word Reading,3,77.49,1,0.78,0.78
+10,Word Reading,1,100,5,0.81,0.95
+10,Word Reading,2,79.15,1,0.91,0.9
+10,Word Reading,3,41.67,2,0.93,0.93
+11,Word Reading,1,90.48,5,0.77,0.91
+11,Word Reading,2,86.8,5,0.89,1
+11,Word Reading,2,93.86,3,0.75,0.89
+10,Word Reading,2,92.02,1,0.83,0.88
+10,Word Reading,2,76.82,3,0.91,0.87
+10,Word Reading,2,57.83,4,0.77,0.7
+11,Word Reading,2,48.62,2,0.94,0.9
+10,Word Reading,2,40.62,3,0.91,0.87
+10,Word Reading,2,58.42,4,0.78,0.71
+10,Word Reading,1,89.32,3,0.85,0.93
+10,Word Reading,1,75.37,3,0.82,0.7
+10,Short Passage Reading,1,95.29,3,0.77,0.84
+10,Short Passage Reading,1,55.08,3,0.87,0.8
+10,Short Passage Reading,1,53.82,2,0.85,0.77
+11,Short Passage Reading,2,72.95,3,0.92,0.87
+10,Short Passage Reading,3,58.97,3,0.95,0.95
+11,Short Passage Reading,3,40.04,1,0.82,0.82
+11,Short Passage Reading,2,40.61,2,0.78,0.75
+11,Short Passage Reading,2,78.61,1,0.83,0.81
+11,Short Passage Reading,3,32.28,4,0.82,0.82
+10,Short Passage Reading,3,72.69,4,0.92,0.92
+10,Short Passage Reading,2,84.5,4,0.84,1
+10,Short Passage Reading,2,58.51,4,0.82,0.75
+11,Short Passage Reading,1,86.22,1,0.88,0.91
+10,Short Passage Reading,3,45.4,2,0.75,0.75
+11,Short Passage Reading,3,79.46,1,0.81,0.81
+10,Short Passage Reading,3,33.23,5,0.9,0.9
+10,Short Passage Reading,3,73.96,3,0.9,0.9
+11,Short Passage Reading,1,95.88,5,0.88,1
+11,Short Passage Reading,1,79.56,4,0.94,0.8
+11,Short Passage Reading,1,98.05,2,0.75,0.81
+11,Short Passage Reading,2,56.93,1,0.88,0.87
+11,Short Passage Reading,3,55.76,2,0.84,0.84
+10,Short Passage Reading,1,71.87,1,0.87,0.84
+11,Short Passage Reading,3,84.67,3,0.86,1
+10,Short Passage Reading,1,92.34,4,0.78,0.86
+11,Short Passage Reading,2,56.18,2,0.89,0.86
+11,Short Passage Reading,3,56.78,1,0.86,0.86
+11,Short Passage Reading,3,84.46,2,0.81,0.95
+10,Short Passage Reading,3,34.61,5,0.9,0.9
+10,Short Passage Reading,1,100,1,0.84,0.87
+11,Short Passage Reading,3,86.15,4,0.85,1
+10,Short Passage Reading,1,55.9,4,0.85,0.76
+10,Short Passage Reading,1,100,3,0.86,0.94
+10,Passage Comprehension,1,94.24,3,0.88,0.97
+10,Passage Comprehension,3,78.13,4,0.87,0.87
+11,Passage Comprehension,3,44.23,1,0.9,0.9
+11,Passage Comprehension,2,90.98,3,0.93,1
+10,Passage Comprehension,1,77.44,2,0.79,0.74
+11,Passage Comprehension,3,32.86,4,0.83,0.83
+10,Passage Comprehension,1,54.91,2,0.89,0.82
+10,Passage Comprehension,1,65.29,5,0.91,0.74
+11,Passage Comprehension,3,34.06,3,0.85,0.85
+10,Passage Comprehension,3,40.51,2,0.94,0.94
+11,Passage Comprehension,1,67.95,1,0.76,0.72
+10,Passage Comprehension,2,66.83,2,0.88,0.84
+10,Passage Comprehension,2,73.67,3,0.87,0.82
+10,Passage Comprehension,2,93.79,2,0.88,0.97
+10,Passage Comprehension,2,57.91,3,0.79,0.76
+10,Passage Comprehension,1,77.62,3,0.89,0.78
+10,Passage Comprehension,1,53.25,5,0.89,0.74
+10,Passage Comprehension,2,77.1,5,0.81,0.76
+10,Passage Comprehension,3,77.94,5,0.85,0.85
+10,Passage Comprehension,3,52.89,3,0.86,0.86
+10,Passage Comprehension,2,42.32,1,0.79,0.78
+10,Passage Comprehension,3,69.28,2,0.81,0.81
+10,Passage Comprehension,1,99.83,1,0.79,0.82
+11,Passage Comprehension,1,79.41,5,0.8,0.7
+10,Passage Comprehension,1,68.67,2,0.83,0.77
+11,Passage Comprehension,3,60.19,4,0.87,0.87
+11,Passage Comprehension,2,97.33,2,0.89,0.99
+10,Passage Comprehension,1,49.11,3,0.87,0.77
+11,Passage Comprehension,1,75.52,3,0.83,0.75
+11,Passage Comprehension,3,72.83,3,0.8,0.8
+10,Passage Comprehension,1,58.66,2,0.82,0.77
+11,Passage Comprehension,1,100,1,0.88,0.91
+10,Passage Comprehension,3,34.42,4,0.76,0.76
+11,Noun Classification,1,100,3,0.81,0.88
+11,Noun Classification,1,100,4,0.9,1
+10,Noun Classification,2,79.94,1,0.81,0.79
+11,Noun Classification,1,60.41,3,0.93,0.81
+11,Noun Classification,1,99.08,1,0.83,0.85
+10,Noun Classification,2,69.83,4,0.92,0.88
+10,Noun Classification,2,93.72,5,0.9,1
+10,Noun Classification,2,76.59,2,0.89,0.85
+10,Noun Classification,3,63.08,3,0.83,0.83
+11,Noun Classification,2,76.95,3,0.89,0.84
+10,Noun Classification,3,84.26,3,0.81,1
+11,Noun Classification,3,36.08,5,0.91,0.91
+11,Noun Classification,3,71.42,3,0.76,0.76
+11,Noun Classification,3,35.62,4,0.93,0.93
+10,Noun Classification,2,89.55,3,0.84,0.97
+10,Noun Classification,2,66.5,4,0.93,0.86
+11,Noun Classification,3,92.11,2,0.79,0.93
+10,Noun Classification,2,94.66,5,0.88,1
+11,Noun Classification,1,98.97,2,0.82,0.87
+10,Noun Classification,3,58.53,3,0.75,0.75
+10,Noun Classification,2,61.49,3,0.84,0.8
+10,Noun Classification,3,60.33,1,0.93,0.93
+10,Noun Classification,1,70.42,4,0.86,0.77
+10,Noun Classification,2,40.15,1,0.81,0.8
+10,Noun Classification,3,52.67,5,0.92,0.92
+11,Noun Classification,3,75.8,1,0.85,0.85
+11,Noun Classification,3,71,5,0.78,0.78
+11,Noun Classification,2,82.18,2,0.95,1
+10,Noun Classification,2,70.23,4,0.91,0.85
+11,Noun Classification,3,46.19,1,0.85,0.85
+11,Noun Classification,3,64.41,4,0.87,0.87
+10,Noun Classification,3,36.66,5,0.88,0.88
+10,Noun Classification,2,92.61,3,0.8,0.93
