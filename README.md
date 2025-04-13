@@ -1,5 +1,27 @@
 # Questions Module Documentation
 
+## Getting Started
+To run the server:
+```bash
+npm install
+npm start
+```
+The server will start on port 10000.
+
+## Table of Contents
+- [Overview](#overview)
+- [Reading Questions](#reading-questions)
+  - [Structure](#reading-structure)
+  - [Question Format](#reading-question-format)
+  - [Implementation Details](#reading-implementation-details)
+  - [Endpoints](#reading-endpoints)
+- [Writing Questions](#writing-questions)
+  - [Structure](#writing-structure)
+  - [Question Format](#writing-question-format)
+  - [Endpoints](#writing-endpoints)
+- [Usage Examples](#usage-examples)
+- [Error Responses](#error-responses)
+- [Modification Guidelines](#modification-guidelines)
 
 ## Overview
 The questions module contains two main types of questions:
@@ -49,17 +71,19 @@ When implementing the question interface in the app:
 ### Endpoints <a name="reading-endpoints"></a>
 
 #### Get Reading Questions
-- **Endpoint**: `GET /getReadingQuestions/:userId`
+- **Endpoint**: `GET /api/adaptive/getReadingQuestions/:userId`
 - **Description**: Fetches adaptive reading questions for a specific user based on their question distribution in the database
 - **Parameters**:
   - `userId` (required): The ID of the user to fetch questions for
+  
+**Note**: You can use `c` as a valid userId for testing (e.g., `http://localhost:10000/api/adaptive/getReadingQuestions/c`). This userId is confirmed to work, but you can try others as well.
 - **Response**:
   - `success`: Boolean indicating if the request was successful
   - `questions`: Array of reading questions
 
 **Example Request**:
 ```bash
-curl -X GET "http://localhost:3000/getReadingQuestions/64f1a2b3c4d5e6f7a8b9c0d1" \
+curl -X GET "http://localhost:10000/api/adaptive/getReadingQuestions/c" \
 -H "Content-Type: application/json"
 ```
 
@@ -101,17 +125,19 @@ Similar structure to Reading Questions with appropriate fields for writing exerc
 ### Endpoints <a name="writing-endpoints"></a>
 
 #### Get Writing Questions
-- **Endpoint**: `GET /getWritingQuestions/:userId`
+- **Endpoint**: `GET /api/adaptive/getWritingQuestions/:userId`
 - **Description**: Fetches adaptive writing questions for a specific user based on their writing question distribution
 - **Parameters**:
   - `userId` (required): The ID of the user to fetch questions for
+  
+**Note**: You can use `c` as a valid userId for testing (e.g., `http://localhost:10000/api/adaptive/getWritingQuestions/c`). This userId is confirmed to work, but you can try others as well.
 - **Response**:
   - `success`: Boolean indicating if the request was successful
   - `questions`: Array of writing questions
 
 **Example Request**:
 ```bash
-curl -X GET "http://localhost:3000/getWritingQuestions/64f1a2b3c4d5e6f7a8b9c0d1" \
+curl -X GET "http://localhost:10000/api/adaptive/getWritingQuestions/c" \
 -H "Content-Type: application/json"
 ```
 
@@ -141,7 +167,9 @@ To get a set of questions:
 1. Choose question type (reading/writing)
 2. Select difficulty level
 3. Specify the number of questions needed
-4. Call the appropriate fetcher function
+4. Call the appropriate fetcher function through the API endpoints
+
+These endpoints are designed to fetch the appropriate number of questions based on the user's profile and requirements. The server handles the distribution logic internally.
 
 ## Error Responses <a name="error-responses"></a>
 Both endpoints return the same error structure:
@@ -162,8 +190,8 @@ Both endpoints return the same error structure:
 }
 ```
 
-## Modification Guidelines 
+## Modification Guidelines <a name="modification-guidelines"></a>
 When modifying question format:
-- Consider UI requirementsV
+- Consider UI requirements
 - Maintain consistency across question types
 - Ensure modifications don't break existing functionality
