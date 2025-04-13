@@ -10,9 +10,8 @@ const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Add CORS middleware
 app.use(cors({
-    origin: process.env.NODE_ENV === 'production' ? 'https://your-frontend-domain.com' : '*',
+    origin: process.env.NODE_ENV === 'production' ? 'link' : '*',
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']
 }));
@@ -24,7 +23,7 @@ if (process.env.NODE_ENV === 'production') {
   app.use(compression());
   
   app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'https://your-frontend-domain.com');
+    res.header('Access-Control-Allow-Origin', 'frontend-link');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     next();
@@ -44,11 +43,7 @@ const connectDB = async () => {
 const authRoutes = require('./Modules/Auth/Auth');
 const adaptiveRouter = require('./Modules/Adaptive/adaptive.js');
 
-console.log('Auth Routes:', authRoutes);
-console.log('Adaptive Routes:', adaptiveRouter);
-
 // Mount the adaptive router
-console.log('Mounting adaptive router at /api/adaptive');
 app.use('/api/adaptive', adaptiveRouter);
 
 app.get('/api/health', (req, res) => {
