@@ -8,6 +8,10 @@ npm start
 ```
 The server will start on port 10000.
 
+
+To get any User ID, use the auth endpoint and create a new account. You'll get the user ID in the response body.
+For testing purpose, you can this this id ,already there in DB `67fc92f3379224eb1af8af0b`
+
 ## API Endpoints Overview
 ### Question Endpoints
 1. **Get Reading Questions**
