@@ -8,6 +8,121 @@ npm start
 ```
 The server will start on port 10000.
 
+## API Endpoints Overview
+### Question Endpoints
+1. **Get Reading Questions**
+   - **Endpoint**: `GET /api/adaptive/getReadingQuestions/:userId`
+   - **Input**: `userId` (URL parameter)
+   - **cURL**:
+     ```bash
+     curl -X GET "http://localhost:10000/api/adaptive/getReadingQuestions/c" \
+     -H "Content-Type: application/json"
+     ```
+   - **Response**:
+     ```json
+     {
+       "success": true,
+       "questions": [
+         {
+           "module": "R1",
+           "level": 1,
+           "question": "Identify the letter 'A'",
+           "options": ["A", "B", "C", "D"],
+           "answer": "A"
+         }
+       ]
+     }
+     ```
+
+2. **Get Writing Questions**
+   - **Endpoint**: `GET /api/adaptive/getWritingQuestions/:userId`
+   - **Input**: `userId` (URL parameter)
+   - **cURL**:
+     ```bash
+     curl -X GET "http://localhost:10000/api/adaptive/getWritingQuestions/c" \
+     -H "Content-Type: application/json"
+     ```
+   - **Response**:
+     ```json
+     {
+       "success": true,
+       "questions": [
+         {
+           "module": "W1",
+           "level": 1,
+           "prompt": "Write the letter 'A'",
+           "expected": "A"
+         }
+       ]
+     }
+     ```
+
+### Scoring Endpoints
+1. **Reading Score**
+   - **Endpoint**: `POST /api/adaptive/reading-score/:userId`
+   - **Input**:
+     - `userId` (URL parameter)
+     - `audio` (file)
+     - `text` (text)
+     - `R` (module identifier)
+     - `level` (difficulty level)
+   - **cURL**:
+     ```bash
+     curl -X POST "http://localhost:10000/api/adaptive/reading-score/c" \
+     -H "Content-Type: multipart/form-data" \
+     -F "audio=@/path/to/recording.mp3" \
+     -F "text=The quick brown fox jumps over the lazy dog" \
+     -F "R=R1" \
+     -F "level=2"
+     ```
+   - **Response**:
+     ```json
+     {
+       "success": true,
+       "similarity_score": 0.85,
+       "updatedAccuracy": {
+         "R1": {
+           "1": 3.75,
+           "2": 2.1,
+           "3": 0.9
+         }
+       }
+     }
+     ```
+
+2. **Handwriting Score**
+   - **Endpoint**: `POST /api/adaptive/handwriting-score/:userId`
+   - **Input**:
+     - `userId` (URL parameter)
+     - `image` (file)
+     - `text` (text)
+     - `W` (module identifier)
+     - `level` (difficulty level)
+   - **cURL**:
+     ```bash
+     curl -X POST "http://localhost:10000/api/adaptive/handwriting-score/c" \
+     -H "Content-Type: multipart/form-data" \
+     -F "image=@/path/to/handwriting.jpg" \
+     -F "text=best summer ever" \
+     -F "W=W1" \
+     -F "level=1"
+     ```
+   - **Response**:
+     ```json
+     {
+       "success": true,
+       "accuracy": 0.78,
+       "detected_text": "Best Summer Ever",
+       "updatedWritingAccuracy": {
+         "W1": {
+           "1": 4.2,
+           "2": 2.8,
+           "3": 1.1
+         }
+       }
+     }
+     ```
+
 ## Table of Contents
 - [Overview](#overview)
 - [Reading Questions](#reading-questions)
@@ -184,7 +299,7 @@ These endpoints are designed to fetch the appropriate number of questions based 
 - **Flask URL**: The endpoint hits `http://localhost:5000` by default. If changed, update the URL in the backend configuration
 
 #### Endpoint
-- **URL**: `POST /reading-score/:userId`
+- **URL**: `POST /api/adaptive/reading-score/:userId`
 - **Method**: `POST`
 - **Content-Type**: `multipart/form-data`
 - **Description**: This endpoint compares a user's audio recording with the expected text to generate a similarity score. The score is then added to the user's reading accuracy metrics.
@@ -230,7 +345,7 @@ These endpoints are designed to fetch the appropriate number of questions based 
 
 #### Example Request Using cURL
 ```bash
-curl -X POST "http://localhost:10000/reading-score/c" \
+curl -X POST "http://localhost:10000/api/adaptive/reading-score/c" \
   -H "Content-Type: multipart/form-data" \
   -F "audio=@/path/to/recording.mp3" \
   -F "text=The quick brown fox jumps over the lazy dog" \
@@ -252,7 +367,7 @@ curl -X POST "http://localhost:10000/reading-score/c" \
 - **Flask URL**: The endpoint hits `http://localhost:5000` by default. If changed, update the URL in the backend configuration
 
 #### Endpoint
-- **URL**: `POST /compare-handwriting/:userId`
+- **URL**: `POST /api/adaptive/compare-handwriting/:userId`
 - **Method**: `POST`
 - **Content-Type**: `multipart/form-data`
 - **Description**: This endpoint compares a user's handwritten image with the expected text to generate a similarity score. The score is added to the user's writing accuracy metrics.
@@ -297,7 +412,7 @@ curl -X POST "http://localhost:10000/reading-score/c" \
 
 #### Example Request Using cURL
 ```bash
-curl -X POST "http://localhost:10000/compare-handwriting/c" \
+curl -X POST "http://localhost:10000/api/adaptive/compare-handwriting/c" \
   -H "Content-Type: multipart/form-data" \
   -F "image=@/path/to/handwriting.jpg" \
   -F "text=The quick brown fox jumps over the lazy dog" \
@@ -308,7 +423,7 @@ curl -X POST "http://localhost:10000/compare-handwriting/c" \
 ### Handwriting Score <a name="handwriting-score"></a>
 
 #### Endpoint
-- **URL**: `POST /handwriting-score/:userId`
+- **URL**: `POST /api/adaptive/handwriting-score/:userId`
 - **Method**: `POST`
 - **Content-Type**: `multipart/form-data`
 - **Description**: This endpoint compares a user's handwritten image with the expected text to generate a similarity score. The score is added to the user's writing accuracy metrics.
@@ -353,7 +468,7 @@ curl -X POST "http://localhost:10000/compare-handwriting/c" \
 
 #### Example Request Using cURL
 ```bash
-curl -X POST "http://localhost:10000/handwriting-score/67fc92f3379224eb1af8af0b" \
+curl -X POST "http://localhost:10000/api/adaptive/handwriting-score/67fc92f3379224eb1af8af0b" \
   -H "Content-Type: multipart/form-data" \
   -F "image=@/path/to/handwriting.jpg" \
   -F "text=best summer ever" \
