@@ -8,6 +8,8 @@ npm start
 ```
 The server will start on port 10000.
 
+**Note**: For scoring endpoints (reading-score, handwriting-score, compare-handwriting), you'll need to have the Flask  server running. The question endpoints (getReadingQuestions, getWritingQuestions) work without Flask.
+
 
 To get any User ID, use the auth endpoint and create a new account. You'll get the user ID in the response body.
 For testing purpose, you can this this id ,already there in DB `67fc92f3379224eb1af8af0b`
