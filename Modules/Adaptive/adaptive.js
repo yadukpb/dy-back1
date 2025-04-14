@@ -200,7 +200,7 @@ router.get('/getWritingQuestions/:userId', async (req, res) => {
 //=========================================================================================================================//
 
 // Audio comparison endpoint
-router.post('/compare-audio/:userId', upload.single('audio'), async (req, res) => {
+router.post('/reading-score/:userId', upload.single('audio'), async (req, res) => {
     try {
         const { text } = req.body;
         const audioFile = req.file;
@@ -326,77 +326,128 @@ router.post('/compare-audio/:userId', upload.single('audio'), async (req, res) =
     }
 });
 
-// New endpoint for handwriting comparison
-router.post('/compare-handwriting/:userId', upload.single('image'), async (req, res) => {
+
+router.post('/handwriting-score/:userId', upload.single('image'), async (req, res) => {
     try {
+        console.log(`[${new Date().toISOString()}] [handwriting-score] Starting handwriting score evaluation`);
+        
+        // Step 1: Validate input parameters
+        console.log(`[${new Date().toISOString()}] [handwriting-score] Validating input parameters`);
+        console.log(`[${new Date().toISOString()}] [handwriting-score] Received request body: ${JSON.stringify(req.body)}`);
+        console.log(`[${new Date().toISOString()}] [handwriting-score] Received file: ${req.file ? req.file.path : 'No file received'}`);
+        
         const { text } = req.body;
         const imageFile = req.file;
         const userId = req.params.userId;
 
         if (!text || !imageFile || !userId) {
+            console.error(`[${new Date().toISOString()}] [handwriting-score] Missing required parameters - text: ${text}, imageFile: ${imageFile}, userId: ${userId}`);
             return res.status(400).json({
                 success: false,
                 message: 'Text, image file, and user ID are required'
             });
         }
 
-        // Use FormData to send to Flask
-        const FormData = require('form-data');
-        const formData = new FormData();
-        formData.append('text', text);
-        formData.append('image', fs.createReadStream(imageFile.path));
+        // Step 2: Prepare for direct file upload to Flask API
+        console.log(`[${new Date().toISOString()}] [handwriting-score] Preparing data for Flask API`);
+        console.log(`[${new Date().toISOString()}] [handwriting-score] Text to be sent: ${text}`);
+        console.log(`[${new Date().toISOString()}] [handwriting-score] Image path: ${imageFile.path}`);
+        
+        // Read the file into a buffer
+        const imageBuffer = fs.readFileSync(imageFile.path);
+        
+        // Convert buffer to base64 for more reliable transfer
+        const base64Image = imageBuffer.toString('base64');
+        
+        // Send JSON data instead of FormData
+        const requestData = {
+            expected_text: text,
+            option: 1,
+            image_base64: base64Image,
+            image_filename: imageFile.originalname || 'image.jpg',
+            image_type: imageFile.mimetype || 'image/jpeg'
+        };
+        
+        console.log(`[${new Date().toISOString()}] [handwriting-score] Sending JSON request to Flask API`);
+        console.log(`[${new Date().toISOString()}] [handwriting-score] Request contains text and base64 image data of ${base64Image.length} characters`);
 
-        // Make request to Flask server
-        const flaskResponse = await axios.post(`${FLASK_API_URL}/handwriting-comparison`, formData, {
-            headers: formData.getHeaders(),
-            maxContentLength: Infinity,
-            maxBodyLength: Infinity
+        const flaskResponse = await axios.post(`${FLASK_API_URL}/handwriting-comparison-json`, requestData, {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            timeout: 30000 // 30 second timeout
         });
 
-        // Store the score
-        const score = parseFloat(flaskResponse.data.similarity_score);
+        // Step 4: Process Flask response
+        console.log(`[${new Date().toISOString()}] [handwriting-score] Processing Flask response`);
+        console.log(`[${new Date().toISOString()}] [handwriting-score] Flask response status: ${flaskResponse.status}`);
+        console.log(`[${new Date().toISOString()}] [handwriting-score] Flask response data: ${JSON.stringify(flaskResponse.data)}`);
+        
+        const score = parseFloat(flaskResponse.data.accuracy);
+        console.log(`[${new Date().toISOString()}] [handwriting-score] Received accuracy score: ${score}`);
 
-        // Get the user's writing accuracy table
+        // Step 5: Fetch user data
+        console.log(`[${new Date().toISOString()}] [handwriting-score] Fetching user data for userId: ${userId}`);
         const user = await User.findById(userId);
         if (!user) {
+            console.error(`[${new Date().toISOString()}] [handwriting-score] User not found: ${userId}`);
             return res.status(404).json({
                 success: false,
                 message: 'User not found'
             });
         }
 
-        // Determine which W and level to update
+        // Step 6: Validate W and level parameters
+        console.log(`[${new Date().toISOString()}] [handwriting-score] Validating W and level parameters`);
         const { W, level } = req.body;
+        console.log(`[${new Date().toISOString()}] [handwriting-score] Received W: ${W}, level: ${level}`);
+        
         if (!W || !level) {
+            console.error(`[${new Date().toISOString()}] [handwriting-score] Missing W or level - W: ${W}, level: ${level}`);
             return res.status(400).json({
                 success: false,
                 message: 'Both W and level are required'
             });
         }
 
-        // Get the current value or default to 0
+        // Step 7: Update writing accuracy
+        console.log(`[${new Date().toISOString()}] [handwriting-score] Updating writing accuracy for ${W} level ${level}`);
         const currentValue = user.WritingAccuracy[W][level] || 0;
+        console.log(`[${new Date().toISOString()}] [handwriting-score] Current accuracy for ${W} level ${level}: ${currentValue}`);
         
-        // Update the writing accuracy table
         user.WritingAccuracy[W][level] = currentValue + score;
+        console.log(`[${new Date().toISOString()}] [handwriting-score] Updated accuracy for ${W} level ${level}: ${user.WritingAccuracy[W][level]}`);
         
+        // Step 8: Save user data
+        console.log(`[${new Date().toISOString()}] [handwriting-score] Saving updated user data`);
         await user.save();
+        console.log(`[${new Date().toISOString()}] [handwriting-score] User data saved successfully`);
 
-        // Return the similarity score from Flask along with updated accuracy
+        // Step 9: Return response
+        console.log(`[${new Date().toISOString()}] [handwriting-score] Returning success response`);
         res.json({
             success: true,
-            similarity_score: score,
+            accuracy: score,
+            detected_text: flaskResponse.data.detected_text,
             updatedWritingAccuracy: user.WritingAccuracy
         });
 
     } catch (error) {
+        console.error(`[${new Date().toISOString()}] [handwriting-score] Error: ${error.message}`, error.stack);
+        if (error.response) {
+            console.error(`[${new Date().toISOString()}] [handwriting-score] Error response data: ${JSON.stringify(error.response.data)}`);
+            console.error(`[${new Date().toISOString()}] [handwriting-score] Error response status: ${error.response.status}`);
+            console.error(`[${new Date().toISOString()}] [handwriting-score] Error response headers: ${JSON.stringify(error.response.headers)}`);
+        }
+        
         // Clean up the temporary file
         try {
             if (req.file && fs.existsSync(req.file.path)) {
                 fs.unlinkSync(req.file.path);
+                console.log(`[${new Date().toISOString()}] [handwriting-score] Temporary file cleaned up: ${req.file.path}`);
             }
         } catch (err) {
-            console.error(`[${new Date().toISOString()}] [compare-handwriting] Error cleaning up image file:`, err);
+            console.error(`[${new Date().toISOString()}] [handwriting-score] Error cleaning up image file:`, err);
         }
         
         res.status(500).json({
@@ -405,9 +456,8 @@ router.post('/compare-handwriting/:userId', upload.single('image'), async (req, 
         });
     }
 });
-
 // Update the submit endpoint to reset accuracy after final step
-router.get('/submit/:userId', async (req, res) => {
+router.get('/submit-reading/:userId', async (req, res) => {
     try {
         const userId = req.params.userId;
         if (!userId || !mongoose.Types.ObjectId.isValid(userId)) {
@@ -507,29 +557,6 @@ router.get('/submit/:userId', async (req, res) => {
             resetAccuracy: Accuracy
         });
 
-    } catch (error) {
-        res.status(500).json({
-            success: false,
-            message: error.message
-        });
-    }
-});
-
-// Add endpoint to get all users
-router.get('/users', async (req, res) => {
-    try {
-        const users = await User.find({});
-        res.json({
-            success: true,
-            users: users.map(user => ({
-                _id: user._id,
-                username: user.username,
-                email: user.email,
-                Accuracy: user.Accuracy,
-                NoOfQuestions: user.NoOfQuestions,
-                Mastery: user.Mastery
-            }))
-        });
     } catch (error) {
         res.status(500).json({
             success: false,

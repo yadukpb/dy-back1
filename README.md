@@ -19,6 +19,10 @@ The server will start on port 10000.
   - [Structure](#writing-structure)
   - [Question Format](#writing-question-format)
   - [Endpoints](#writing-endpoints)
+- [Scoring Endpoints](#scoring-endpoints)
+  - [Reading Score (Audio Comparison)](#reading-score)
+  - [Handwriting Comparison](#handwriting-comparison)
+  - [Handwriting Score](#handwriting-score)
 - [Usage Examples](#usage-examples)
 - [Error Responses](#error-responses)
 - [Modification Guidelines](#modification-guidelines)
@@ -171,24 +175,199 @@ To get a set of questions:
 
 These endpoints are designed to fetch the appropriate number of questions based on the user's profile and requirements. The server handles the distribution logic internally.
 
-## Error Responses <a name="error-responses"></a>
-Both endpoints return the same error structure:
+## Scoring Endpoints <a name="scoring-endpoints"></a>
 
-**Invalid User ID**:
-```json
-{
-  "success": false,
-  "message": "Invalid user ID"
-}
+### Reading Score (Audio Comparison) <a name="reading-score"></a>
+
+#### Important Notes
+- **Flask Server**: Ensure the Flask scoring server is running locally before hitting this endpoint
+- **Flask URL**: The endpoint hits `http://localhost:5000` by default. If changed, update the URL in the backend configuration
+
+#### Endpoint
+- **URL**: `POST /reading-score/:userId`
+- **Method**: `POST`
+- **Content-Type**: `multipart/form-data`
+- **Description**: This endpoint compares a user's audio recording with the expected text to generate a similarity score. The score is then added to the user's reading accuracy metrics.
+
+#### Request Parameters
+- **URL Parameters**:
+  - `userId` (required): The ID of the user submitting the audio recording
+
+- **Form Data**:
+  - `audio` (required): Audio file of the user's voice recording
+  - `text` (required): The text that the user was supposed to read
+  - `R` (required): The reading module identifier (e.g., "R1", "R2")
+  - `level` (required): The difficulty level (1, 2, or 3)
+
+#### Processing Details
+1. The endpoint accepts an audio file upload and converts it to WAV format using FFmpeg
+2. The converted file is sent to a Flask API endpoint for audio-text similarity analysis
+3. The resulting similarity score is added to the user's accuracy table for the specified module and level
+4. Temporary files are cleaned up after processing
+
+#### Response
+- **Success Response**:
+  ```json
+  {
+    "success": true,
+    "similarity_score": 0.85,
+    "updatedAccuracy": {
+      "R1": {
+        "1": 3.75,
+        "2": 2.1,
+        "3": 0.9
+      },
+      "R2": {
+        "1": 4.2,
+        "2": 1.8,
+        "3": 0.5
+      }
+    }
+  }
+  ```
+
+
+
+#### Example Request Using cURL
+```bash
+curl -X POST "http://localhost:10000/reading-score/c" \
+  -H "Content-Type: multipart/form-data" \
+  -F "audio=@/path/to/recording.mp3" \
+  -F "text=The quick brown fox jumps over the lazy dog" \
+  -F "R=R1" \
+  -F "level=2"
 ```
 
-**User Not Found**:
-```json
-{
-  "success": false,
-  "message": "User not found"
-}
+
+#### Implementation Notes for Frontend Developers
+- **Audio Recording**: Use the Web Audio API or a library like RecordRTC to capture audio from the user's microphone
+- **File Format**: Most common audio formats (MP3, WAV, OGG) are accepted, as the server will convert to WAV format
+- **Error Handling**: Implement robust error handling to manage various failure scenarios
+- **Progress Indicators**: Show loading indicators during upload and processing, as audio analysis may take several seconds
+
+### Handwriting Comparison <a name="handwriting-comparison"></a>
+
+#### Important Notes
+- **Flask Server**: Ensure the Flask scoring server is running locally before hitting this endpoint
+- **Flask URL**: The endpoint hits `http://localhost:5000` by default. If changed, update the URL in the backend configuration
+
+#### Endpoint
+- **URL**: `POST /compare-handwriting/:userId`
+- **Method**: `POST`
+- **Content-Type**: `multipart/form-data`
+- **Description**: This endpoint compares a user's handwritten image with the expected text to generate a similarity score. The score is added to the user's writing accuracy metrics.
+
+#### Request Parameters
+- **URL Parameters**:
+  - `userId` (required): The ID of the user submitting the handwriting image
+
+- **Form Data**:
+  - `image` (required): Image file of the user's handwriting
+  - `text` (required): The text that the user was supposed to write
+  - `W` (required): The writing module identifier (e.g., "W1", "W2")
+  - `level` (required): The difficulty level (1, 2, or 3)
+
+#### Processing Details
+1. The endpoint accepts an image file upload
+2. The image is sent to a Flask API endpoint for handwriting-text similarity analysis
+3. The resulting similarity score is added to the user's writing accuracy table for the specified module and level
+4. Temporary files are cleaned up after processing
+
+#### Response
+- **Success Response**:
+  ```json
+  {
+    "success": true,
+    "similarity_score": 0.78,
+    "updatedWritingAccuracy": {
+      "W1": {
+        "1": 4.2,
+        "2": 2.8,
+        "3": 1.1
+      },
+      "W2": {
+        "1": 3.9,
+        "2": 2.3,
+        "3": 0.8
+      }
+    }
+  }
+  ```
+
+
+#### Example Request Using cURL
+```bash
+curl -X POST "http://localhost:10000/compare-handwriting/c" \
+  -H "Content-Type: multipart/form-data" \
+  -F "image=@/path/to/handwriting.jpg" \
+  -F "text=The quick brown fox jumps over the lazy dog" \
+  -F "W=W1" \
+  -F "level=2"
 ```
+
+### Handwriting Score <a name="handwriting-score"></a>
+
+#### Endpoint
+- **URL**: `POST /handwriting-score/:userId`
+- **Method**: `POST`
+- **Content-Type**: `multipart/form-data`
+- **Description**: This endpoint compares a user's handwritten image with the expected text to generate a similarity score. The score is added to the user's writing accuracy metrics.
+
+#### Request Parameters
+- **URL Parameters**:
+  - `userId` (required): The ID of the user submitting the handwriting image
+
+- **Form Data**:
+  - `image` (required): Image file of the user's handwriting
+  - `text` (required): The text that the user was supposed to write
+  - `W` (required): The writing module identifier (e.g., "W1", "W2")
+  - `level` (required): The difficulty level (1, 2, or 3)
+
+#### Processing Details
+1. The endpoint accepts an image file upload
+2. The image is converted to base64 and sent to a Flask API endpoint for handwriting-text similarity analysis
+3. The resulting accuracy score is added to the user's writing accuracy table for the specified module and level
+4. Temporary files are cleaned up after processing
+
+#### Response
+- **Success Response**:
+  ```json
+  {
+    "success": true,
+    "accuracy": 0.78,
+    "detected_text": "Best Summer Ever",
+    "updatedWritingAccuracy": {
+      "W1": {
+        "1": 4.2,
+        "2": 2.8,
+        "3": 1.1
+      },
+      "W2": {
+        "1": 3.9,
+        "2": 2.3,
+        "3": 0.8
+      }
+    }
+  }
+  ```
+
+#### Example Request Using cURL
+```bash
+curl -X POST "http://localhost:10000/handwriting-score/67fc92f3379224eb1af8af0b" \
+  -H "Content-Type: multipart/form-data" \
+  -F "image=@/path/to/handwriting.jpg" \
+  -F "text=best summer ever" \
+  -F "W=W1" \
+  -F "level=1"
+```
+
+#### Implementation Notes
+- **Image Formats**: Accepts common image formats (JPEG, PNG)
+- **Base64 Conversion**: The image is converted to base64 for reliable transfer
+- **Error Handling**: Includes detailed error logging and cleanup of temporary files
+- **Timeout**: 30-second timeout for Flask
+
+All you have to do is: once the user records their answer for a question, send it to the backend with the parameters W1, level, audio, and expected text. The backend will return a score. If the score is < 0.5, return "Try again", else return "Success" messages.
 
 ## Modification Guidelines <a name="modification-guidelines"></a>
 When modifying question format:
