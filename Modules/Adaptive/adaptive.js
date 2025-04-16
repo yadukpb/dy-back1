@@ -15,6 +15,7 @@ const { exec } = require('child_process');
 const path = require('path');
 const axios = require('axios');
 const fs = require('fs');
+const ffmpeg = require('fluent-ffmpeg');
 
 const uploadsDir = path.join(__dirname, '../../uploads');
 if (!fs.existsSync(uploadsDir)) {
@@ -216,108 +217,109 @@ router.post('/reading-score/:userId', upload.single('audio'), async (req, res) =
         // Convert the uploaded file to WAV format
         const wavFilePath = path.join(uploadsDir, `converted_${Date.now()}.wav`);
         
-        exec(`ffmpeg -i "${audioFile.path}" "${wavFilePath}"`, async (error, stdout, stderr) => {
-            if (error) {
-                // Clean up the temporary files
-                try {
-                    if (fs.existsSync(audioFile.path)) {
-                        fs.unlinkSync(audioFile.path);
+        // Use fluent-ffmpeg instead of exec
+        await new Promise((resolve, reject) => {
+            ffmpeg(audioFile.path)
+                .output(wavFilePath)
+                .on('end', resolve)
+                .on('error', (err) => {
+                    // Clean up the temporary files
+                    try {
+                        if (fs.existsSync(audioFile.path)) {
+                            fs.unlinkSync(audioFile.path);
+                        }
+                    } catch (cleanupErr) {
+                        console.error(`[${new Date().toISOString()}] [compare-audio] Error cleaning up audio file:`, cleanupErr);
                     }
-                } catch (err) {
-                    console.error(`[${new Date().toISOString()}] [compare-audio] Error cleaning up audio file:`, err);
-                }
-                
-                return res.status(500).json({
-                    success: false,
-                    message: 'Error processing audio file'
-                });
-            }
-
-            try {
-                // Verify the file exists before proceeding
-                if (!fs.existsSync(wavFilePath)) {
-                    throw new Error(`WAV file not created at path: ${wavFilePath}`);
-                }
-                
-                // Use FormData from a proper package for Node.js
-                const FormData = require('form-data');
-                const formData = new FormData();
-                formData.append('text', text);
-                formData.append('audio', fs.createReadStream(wavFilePath));
-
-                // Make request to Flask server using the form-data's headers
-                const flaskResponse = await axios.post(`${FLASK_API_URL}/audio-comparison`, formData, {
-                    headers: formData.getHeaders(),
-                    maxContentLength: Infinity,
-                    maxBodyLength: Infinity
-                });
-
-                // Store the score
-                const score = parseFloat(flaskResponse.data.similarity_score);
-
-                // Clean up files after processing
-                try {
-                    if (fs.existsSync(audioFile.path)) {
-                        fs.unlinkSync(audioFile.path);
-                    }
-                    if (fs.existsSync(wavFilePath)) {
-                        fs.unlinkSync(wavFilePath);
-                    }
-                } catch (err) {
-                    console.error(`[${new Date().toISOString()}] [compare-audio] Error cleaning up files:`, err);
-                }
-
-                // Get the user's accuracy table
-                const user = await User.findById(userId);
-                if (!user) {
-                    return res.status(404).json({
-                        success: false,
-                        message: 'User not found'
-                    });
-                }
-
-                // Determine which R and level to update (you'll need to pass these in the request)
-                const { R, level } = req.body;
-                if (!R || !level) {
-                    return res.status(400).json({
-                        success: false,
-                        message: 'Both R and level are required'
-                    });
-                }
-
-                // Get the current value or default to 0
-                const currentValue = user.Accuracy[R][level] || 0;
-                
-                // Update the accuracy table
-                user.Accuracy[R][level] = currentValue + score;
-                
-                await user.save();
-
-                // Return the similarity score from Flask along with updated accuracy
-                res.json({
-                    success: true,
-                    similarity_score: score,
-                    updatedAccuracy: user.Accuracy
-                });
-            } catch (error) {
-                // Clean up files in case of error
-                try {
-                    if (fs.existsSync(audioFile.path)) {
-                        fs.unlinkSync(audioFile.path);
-                    }
-                    if (fs.existsSync(wavFilePath)) {
-                        fs.unlinkSync(wavFilePath);
-                    }
-                } catch (err) {
-                    console.error(`[${new Date().toISOString()}] [compare-audio] Error cleaning up files:`, err);
-                }
-                
-                res.status(500).json({
-                    success: false,
-                    message: error.response?.data?.message || error.message
-                });
-            }
+                    reject(new Error('Error processing audio file'));
+                })
+                .run();
         });
+
+        try {
+            // Verify the file exists before proceeding
+            if (!fs.existsSync(wavFilePath)) {
+                throw new Error(`WAV file not created at path: ${wavFilePath}`);
+            }
+            
+            // Use FormData from a proper package for Node.js
+            const FormData = require('form-data');
+            const formData = new FormData();
+            formData.append('text', text);
+            formData.append('audio', fs.createReadStream(wavFilePath));
+
+            // Make request to Flask server using the form-data's headers
+            const flaskResponse = await axios.post(`${FLASK_API_URL}/audio-comparison`, formData, {
+                headers: formData.getHeaders(),
+                maxContentLength: Infinity,
+                maxBodyLength: Infinity
+            });
+
+            // Store the score
+            const score = parseFloat(flaskResponse.data.similarity_score);
+
+            // Clean up files after processing
+            try {
+                if (fs.existsSync(audioFile.path)) {
+                    fs.unlinkSync(audioFile.path);
+                }
+                if (fs.existsSync(wavFilePath)) {
+                    fs.unlinkSync(wavFilePath);
+                }
+            } catch (err) {
+                console.error(`[${new Date().toISOString()}] [compare-audio] Error cleaning up files:`, err);
+            }
+
+            // Get the user's accuracy table
+            const user = await User.findById(userId);
+            if (!user) {
+                return res.status(404).json({
+                    success: false,
+                    message: 'User not found'
+                });
+            }
+
+            // Determine which R and level to update (you'll need to pass these in the request)
+            const { R, level } = req.body;
+            if (!R || !level) {
+                return res.status(400).json({
+                    success: false,
+                    message: 'Both R and level are required'
+                });
+            }
+
+            // Get the current value or default to 0
+            const currentValue = user.Accuracy[R][level] || 0;
+            
+            // Update the accuracy table
+            user.Accuracy[R][level] = currentValue + score;
+            
+            await user.save();
+
+            // Return the similarity score from Flask along with updated accuracy
+            res.json({
+                success: true,
+                similarity_score: score,
+                updatedAccuracy: user.Accuracy
+            });
+        } catch (error) {
+            // Clean up files in case of error
+            try {
+                if (fs.existsSync(audioFile.path)) {
+                    fs.unlinkSync(audioFile.path);
+                }
+                if (fs.existsSync(wavFilePath)) {
+                    fs.unlinkSync(wavFilePath);
+                }
+            } catch (err) {
+                console.error(`[${new Date().toISOString()}] [compare-audio] Error cleaning up files:`, err);
+            }
+            
+            res.status(500).json({
+                success: false,
+                message: error.response?.data?.message || error.message
+            });
+        }
     } catch (error) {
         res.status(500).json({
             success: false,
