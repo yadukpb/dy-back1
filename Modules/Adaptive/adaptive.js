@@ -215,26 +215,28 @@ router.post('/reading-score/:userId', upload.single('audio'), async (req, res) =
         }
 
         // Convert the uploaded file to WAV format
-        const wavFilePath = path.join(uploadsDir, `converted_${Date.now()}.wav`);
-        
+        // const wavFilePath = path.join(uploadsDir, `converted_${Date.now()}.wav`);
+        const wavFilePath = audioFile.path;
+
         // Use fluent-ffmpeg instead of exec
-        await new Promise((resolve, reject) => {
-            ffmpeg(audioFile.path)
-                .output(wavFilePath)
-                .on('end', resolve)
-                .on('error', (err) => {
-                    // Clean up the temporary files
-                    try {
-                        if (fs.existsSync(audioFile.path)) {
-                            fs.unlinkSync(audioFile.path);
-                        }
-                    } catch (cleanupErr) {
-                        console.error(`[${new Date().toISOString()}] [compare-audio] Error cleaning up audio file:`, cleanupErr);
-                    }
-                    reject(new Error('Error processing audio file'));
-                })
-                .run();
-        });
+
+        // await new Promise((resolve, reject) => {
+        //     ffmpeg(audioFile.path)
+        //         .output(wavFilePath)
+        //         .on('end', resolve)
+        //         .on('error', (err) => {
+        //             // Clean up the temporary files
+        //             try {
+        //                 if (fs.existsSync(audioFile.path)) {
+        //                     fs.unlinkSync(audioFile.path);
+        //                 }
+        //             } catch (cleanupErr) {
+        //                 console.error(`[${new Date().toISOString()}] [compare-audio] Error cleaning up audio file:`, cleanupErr);
+        //             }
+        //             // reject(new Error('Error processing audio file'));
+        //         })
+        //         .run();
+        // });
 
         try {
             // Verify the file exists before proceeding
